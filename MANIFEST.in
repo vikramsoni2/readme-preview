@@ -1,0 +1,2 @@
+include readme-preview/static/*
+graft readme-preview

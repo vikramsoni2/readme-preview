@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: readme-preview
+Version: 0.1.0
+Summary: jupyter extension for previewing readme.md files
+Home-page: https://github.com/vikramsoni2/readme-preview
+Author: Vikram Soni
+Author-email: vikram9880@gmail.com
+License: UNKNOWN
+Description: # readme-preview
+        
+        A Jupyter notebook extension to render README.md markdown files in the folder view
+        
+        it loads the github style preview of README.md file if it exist in the current directory.
+        
+        
+        install python package
+        
+            pip install readme-preview
+        
+        
+        Install the notebook extension
+        
+            jupyter nbextension install --py readme-preview
+        
+        
+        emable the extension
+        
+            jupyter nbextension enable --py readme-preview
+        
+        
+        ## References
+        
+        https://github.com/showdownjs/showdown used for converting markdown to HTML for preview
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
