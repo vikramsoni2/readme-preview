@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 setup(
     name = 'readme-preview',
     description = 'jupyter extension for previewing readme.md files',
-    version = '0.1.1',
+    version = '0.2.0',
     keyword="nbextension, jupyter, extension, readme, markdown",
     long_description=README,
     long_description_content_type="text/markdown",
