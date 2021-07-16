@@ -1,4 +1,4 @@
-define(['exports', 'base/js/events', './showdown'], function (exports, events, showdown) {
+define(['exports', 'base/js/events', 'base/js/namespace', './showdown'], function (exports, events, Jupyter, showdown) {
 
     converter = new showdown.Converter()
 
@@ -51,16 +51,16 @@ define(['exports', 'base/js/events', './showdown'], function (exports, events, s
             method: 'GET',      
             headers: {'Content-Type':'application/json'}
         };
+        
+        base_url = Jupyter.notebook_list.base_url
+        model_path = Jupyter.notebook_list.model_list.path
+        models = Jupyter.notebook_list.model_list.content.filter(model=>model.name=='README.md')
 
-        var rows = Array.prototype.concat.apply([], document.querySelectorAll('.list_item.row'));
-        var row = rows.filter(row=>row.querySelector('.item_name').innerText=='README.md')
+        if(models.length > 0){
 
-        if(row.length > 0){
+            var rest_url = base_url + "api/contents"+ model_path +"/README.md?type=file&format=text"
 
-            var url = row[0].querySelector('.item_link').href.replace(/^.*\/\/[^\/]+/, '')
-            url = "/api/contents/"+ url.split("/").splice(2).join("/")+"?type=file&format=text"
-
-            fetch(url, opts).then(function (response) {
+            fetch(rest_url, opts).then(function (response) {
                 return response.json();
             })
             .then(function (body) {
