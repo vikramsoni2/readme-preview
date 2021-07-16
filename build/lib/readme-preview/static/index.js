@@ -58,7 +58,7 @@ define(['exports', 'base/js/events', 'base/js/namespace', './showdown'], functio
 
         if(models.length > 0){
 
-            var rest_url = base_url + "api/contents"+ model_path +"/README.md?type=file&format=text"
+            var rest_url = base_url + "api/contents/"+ model_path +"/README.md?type=file&format=text"
 
             fetch(rest_url, opts).then(function (response) {
                 return response.json();
