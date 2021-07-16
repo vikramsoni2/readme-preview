@@ -1,4 +1,4 @@
-define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
+define(['exports', 'base/js/events', './showdown'], function (exports, events, showdown) {
 
     converter = new showdown.Converter()
 
@@ -47,7 +47,6 @@ define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
     }
 
     function showReadMe(){
-
         var opts = {
             method: 'GET',      
             headers: {'Content-Type':'application/json'}
@@ -60,8 +59,6 @@ define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
 
             var url = row[0].querySelector('.item_link').href.replace(/^.*\/\/[^\/]+/, '')
             url = "/api/contents/"+ url.split("/").splice(2).join("/")+"?type=file&format=text"
-
-            console.log(url)
 
             fetch(url, opts).then(function (response) {
                 return response.json();
@@ -78,6 +75,15 @@ define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
     function load_ipython_extension() {
         addStyle()
         showReadMe()
+
+        events.on("draw_notebook_list.NotebookList", function() {
+
+            if (document.contains(document.getElementById("div_readme"))) {
+                document.getElementById("div_readme").remove();
+            }
+            
+            showReadMe()                           
+        })
 
     }
 

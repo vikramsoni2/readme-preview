@@ -16,11 +16,6 @@ emable the extension
     jupyter nbextension enable --py readme-preview
     
 
-
-#### TODO
-
-* reload readme when directory changed
-
 ## References
 
 https://github.com/showdownjs/showdown used for converting markdown to HTML for preview
