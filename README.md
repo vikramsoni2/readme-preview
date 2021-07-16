@@ -1,24 +1,25 @@
 # readme-preview
 
-A Jupyter notebook extension to render README.md markdown files in the folder view
-
+A Jupyter notebook extension to render README.md markdown files in the folder view. 
 it loads the github style preview of README.md file if it exist in the current directory.
 
-
-install python package
+install python package  
 
     pip install readme-preview
 
-
-Install the notebook extension
-
+Install the notebook extension  
+  
     jupyter nbextension install --py readme-preview
 
-
-emable the extension
+emable the extension  
 
     jupyter nbextension enable --py readme-preview
+    
 
+
+#### TODO
+
+* reload readme when directory changed
 
 ## References
 

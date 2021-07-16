@@ -2,16 +2,45 @@ define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
 
     converter = new showdown.Converter()
 
+    converter.setFlavor('github');
+    converter.setOption('simpleLineBreaks', true)
+    converter.setOption('tasklists', true)
+    converter.setOption('tables', true)
+    converter.setOption('openLinksInNewWindow', true)
+
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+
+
+    function addStyle(){
+    
+        const style = document.createElement('style');
+        // add CSS styles
+        style.innerHTML = `
+            #div_readme {
+                padding:20px; 
+                border:1px solid #ddd; 
+                border-radius:5px; 
+                background: #fcfcfc;
+            }
+            #div_readme p {
+                margin: 2rem 0 1rem 0;
+            }
+        `;
+
+        // append the style to the DOM in <head> section
+        document.head.appendChild(style);
+
+    }
 
     function drawHtml(markdown){
 
         var html = converter.makeHtml(markdown)
 
         div = document.createElement('div')
-        div.style.cssText="padding:20px; border:1px solid #ddd; border-radius:5px; background: #fcfcfc;"
+        div.setAttribute("id", "div_readme");
+
         div.innerHTML = "<h4 style='font-weight:bold'>README.md</h4><hr/>"
         div.innerHTML += html
         document.querySelector('#notebooks').appendChild(div)
@@ -47,7 +76,7 @@ define(['exports', './showdown', 'jquery'], function (exports, showdown, $) {
     
 
     function load_ipython_extension() {
-
+        addStyle()
         showReadMe()
 
     }
