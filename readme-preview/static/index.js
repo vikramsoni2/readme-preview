@@ -41,7 +41,7 @@ define(['exports', 'base/js/events', 'base/js/namespace', './showdown'], functio
         div = document.createElement('div')
         div.setAttribute("id", "div_readme");
 
-        div.innerHTML = "<h4 style='font-weight:bold'>README.md</h4><hr/>"
+        div.innerHTML = "<h5 style='font-weight:bold'>README.md</h5><hr/>"
         div.innerHTML += html
         document.querySelector('#notebooks').appendChild(div)
     }
@@ -59,6 +59,8 @@ define(['exports', 'base/js/events', 'base/js/namespace', './showdown'], functio
         if(models.length > 0){
 
             var rest_url = base_url + "api/contents/"+ model_path +"/README.md?type=file&format=text"
+
+            rest_url = rest_url.replace("//","/")
 
             fetch(rest_url, opts).then(function (response) {
                 return response.json();
